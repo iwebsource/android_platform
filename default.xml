@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
 
-  <remote  name="aosp"
-           fetch=".." />
-  <default revision="refs/tags/android-5.1.0_r1"
-           remote="aosp"
-           sync-j="4" />
+  <remote name="aosp"
+        fetch="https://android.googlesource.com/"
+        review="https://android-review.googlesource.com/" />
 
-  <project path="build" name="platform/build" groups="pdk,tradefed" >
+  <remote name="iwebsource"
+        fetch="https://github.com/iwebsource/" />
+<default revision="refs/tags/android-5.1.0_r1"
+        remote="aosp"
+        sync-j="4" />
+
+  <project path="build" name="android_platform_build" remote="iwebsource" revision="lollipop-5.1" >
     <copyfile src="core/root.mk" dest="Makefile" />
   </project>
+  
+  <!-- My Custom Repos -->
+  <project path="device/asus/flo" name="android_device_asus_flo" remote="iwebsource" revision="lollipop-5.1" />
+  
+  <!-- AOSP Repos -->
   <project path="abi/cpp" name="platform/abi/cpp" groups="pdk" />
   <project path="art" name="platform/art" groups="pdk" />
   <project path="bionic" name="platform/bionic" groups="pdk" />
